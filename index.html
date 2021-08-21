@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafío</title>
+</head>
+<style>
+    html {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    *,
+    *:before,
+    *:after {
+        -webkit-box-sizing: inherit;
+        -moz-box-sizing: inherit;
+        box-sizing: inherit;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <div v-bind:style="styleObject">
+            <component-cartoon></component-cartoon>
+        </div>
+    </div>
+
+    <!--CDN VUE-->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!--My CSS-->
+    <script>
+        Vue.component('component-cartoon', {
+            data() {
+                return {
+                    styleContainer: {
+                        width: '90%',
+                        margin: 'auto',
+                        padding: '2rem 0',
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        justifyContenet: 'center',
+                        alignItems: 'center'
+                    },
+                    styleImg: {
+                        width: '200px',
+                        height: '200px',
+                        objectFit: 'cover',
+                        borderRadius: '50%'
+                    },
+                    styleH2: {
+                        marginLeft: '2rem',
+                        fontSize: '2.5rem'
+                    },
+ /*2. Los datos deben estar definidos en un objeto "data" dentro del componente y el 
+"template" debe encargarse de mostrarlos dinámicamente.*/                   
+                    character: [{
+                            nombre: "Rick Sanchez",
+                            src: "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+                        },
+                        {
+                            nombre: "Morty Smith",
+                            src: "https://rickandmortyapi.com/api/character/avatar/2.jpeg"
+                        },
+                        {
+                            nombre: "Summer Smith",
+                            src: "https://rickandmortyapi.com/api/character/avatar/3.jpeg"
+                        },
+                        {
+                            nombre: "Beth Smith",
+                            src: "https://rickandmortyapi.com/api/character/avatar/4.jpeg"
+                        },
+                        {
+                            nombre: "Jerry Sanchez",
+                            src: "https://rickandmortyapi.com/api/character/avatar/5.jpeg"
+                        }
+                    ]
+                }
+            },
+            template: '<div><div v-bind:style="styleContainer" v-for="(item,index) in character" :key="index"><img v-bind:style="styleImg" v-bind:src="item.src" alt="img cartoon"><h2 v-bind:style="styleH2">{{item.nombre}}</h2></div></div>'
+        });
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                styleObject: {
+                    width: '100%',
+                    minHeight: '100vh',
+                    backgroundImage: 'url("https://rickandmortypod.com/wp-content/uploads/2018/11/cropped-RM_page-header_background1-3.png")',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                    color: '#008f39'
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
